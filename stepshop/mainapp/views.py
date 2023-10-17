@@ -2,7 +2,20 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'index.html')
+    title = "Главная"
+    links_menu = [
+        {'link': 'index', 'name': 'Главная'},
+        {'link': 'products:index', 'name': 'Продукты'},
+        {'link': 'about', 'name': 'О нас'},
+        {'link': 'contacts', 'name': 'Контакты'},
+    ]
+
+    context = {
+        'title': title,
+        'links_menu': links_menu,
+    }
+
+    return render(request, 'index.html', context)
 
 
 def about(request):
@@ -14,7 +27,11 @@ def contacts(request):
 
 
 def products(request):
-    return render(request, 'products.html')
+    title = "Каталог продуктов"
+
+    context = {'title': title}
+
+    return render(request, 'products.html', context)
 
 
 def product(request):
