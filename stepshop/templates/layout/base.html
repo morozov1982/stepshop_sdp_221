@@ -1,9 +1,9 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,87 +23,86 @@
     <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
     {% block css %}
     {% endblock %}
-<!--
-Tooplate 2114 Pixie
-https://www.tooplate.com/view/2114-pixie
--->
-  </head>
+    <!--
+    Tooplate 2114 Pixie
+    https://www.tooplate.com/view/2114-pixie
+    -->
+</head>
 
-  <body>
+<body>
 
-    <!-- Pre Header -->
-    <div id="pre-header">
-      <div class="container">
+<!-- Pre Header -->
+<div id="pre-header">
+    <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            {% if user.is_authenticated %}
+            <div class="col-md-12">
 
-              <span>{{ user.username }}</span><br>
-              <span>{{ user.first_name|title }} {{ user.last_name|title }}</span>
-              {# <span>{{ user.last_login|date:"d m Y" }}</span> #}
+                {% if user.is_authenticated %}
+                    <span>
+                    <a href="{% url 'auth:edit' %}" class="text-light">
+                        {{ user.username }}</a>
+                    </span> |
+                    <span>
+                  <a href="{% url 'auth:logout' %}" class="text-light">
+                      Выйти</a></span>
+                {% else %}
+                    <span>
+              <a href="{% url 'auth:login' %}" class="text-light">Войти</a>
+              </span>
+                {% endif %}
 
-            {% else %}
-              <span>Гость</span>
-            {% endif %}
-
-            {% for item in object %}
-              {{ item }}
-            {% endfor %}
-
-          </div>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
 {% include '../includes/inc_main_menu.html' %}
 
 {% block content %}
-  Базовый шаблон
+    Базовый шаблон
 {% endblock %}
 
 
-    <!-- Sub Footer Starts Here -->
-    <div class="sub-footer">
-      <div class="container">
+<!-- Sub Footer Starts Here -->
+<div class="sub-footer">
+    <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="copyright-text">
-              <p>Copyright &copy; 2023&ndash;{% now "Y" %} Bober Inc.
-
-                - Design: <a rel="nofollow" href="https://www.facebook.com/tooplate">Tooplate</a></p>
+            <div class="col-md-12">
+                <div class="copyright-text">
+                    <p>Copyright &copy; 2023&ndash;{% now "Y" %} Bober Inc.</p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    <!-- Sub Footer Ends Here -->
+</div>
+<!-- Sub Footer Ends Here -->
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 
-    <!-- Additional Scripts -->
-    <script src="{% static 'assets/js/custom.js' %}"></script>
-    <script src="{% static 'assets/js/owl.js' %}"></script>
+<!-- Additional Scripts -->
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script src="{% static 'assets/js/owl.js' %}"></script>
 
-    {% block js %}
-    {% endblock %}
-
-
-    <script language = "text/Javascript">
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
+{% block js %}
+{% endblock %}
 
 
-  </body>
+<script language="text/Javascript">
+    cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+    function clearField(t) {                   //declaring the array outside of the
+        if (!cleared[t.id]) {                      // function makes it static and global
+            cleared[t.id] = 1;  // you could use true and false, but that's more typing
+            t.value = '';         // with more chance of typos
+            t.style.color = '#fff';
+        }
+    }
+</script>
+
+
+</body>
 
 </html>
