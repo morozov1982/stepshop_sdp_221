@@ -25,10 +25,6 @@ def login(request):
             return HttpResponseRedirect(reverse('index'))
 
     context = get_data(title=title, login_form=login_form, next=_next)
-    # context = {
-    #     'title': title,
-    #     'login_form': login_form,
-    # }
 
     return render(request, 'auth/login.html', context)
 
