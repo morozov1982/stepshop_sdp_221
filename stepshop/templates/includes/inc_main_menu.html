@@ -1,4 +1,5 @@
 {% load static %}
+{% load my_tags %}
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -13,7 +14,7 @@
 
         {% for item in links_menu %}
         <li class="nav-item
-                  {% if request.resolver_match.url_name == item.link %}active{% endif %}">
+            {% if not request.resolver_match.namespaces and request.resolver_match.url_name == item.link or item.link|my_split in request.resolver_match.namespace %}active{% endif %}">
             <a class="nav-link" href="{% url item.link %}">{{ item.name }}
               {% if request.resolver_match.url_name == item.link %}
                 <span class="sr-only">(current)</span>
@@ -21,7 +22,6 @@
             </a>
         </li>
         {% endfor %}
-
       </ul>
     </div>
   </div>
